@@ -81,6 +81,13 @@
             bindings = <&none &kp E &kp X &kp I &kp T &kp SEMI &kp RET>;
             label = "M_EXIT";
         };
+
+        m_undo: m_undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none>;
+            label = "M_UNDO";
+        };
     };
 
     keymap {
@@ -88,31 +95,31 @@
 
         default_layer {
             bindings = <
-&kp ESCAPE    &kp N1     &kp N2  &kp N3    &kp N4     &kp N5  &tog 1                                                                 &mo 3         &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB       &kp Q      &kp W   &kp E     &kp R      &kp T   &kp TAB                                                                &kp LEFT_WIN  &kp Y   &kp U   &kp I      &kp O     &kp SEMI  &kp BSLH
-&kp CAPSLOCK  &kp A      &kp S   &kp D     &kp F      &kp G   &kp LEFT_CONTROL  &kp DEL  &kp LALT      &kp RIGHT_ALT  &kp BACKSPACE  &kp RCTRL     &kp H   &kp J   &kp K      &kp L     &kp P     &kp SQT
-&kp LSHFT     &kp Z      &kp X   &kp C     &kp V      &kp B                              &kp HOME      &kp PG_UP                                   &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2         &kp GRAVE  &none   &kp LEFT  &kp RIGHT          &kp SPACE         &kp DEL  &kp END       &kp PG_DN      &kp ENTER      &kp SPACE             &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
-            >;
-        };
-
-        layer_keypad {
-            bindings = <
-&kp ESCAPE    &kp N1     &kp N2  &kp N3    &kp N4     &kp N5  &trans                                                   &mo 3      &kp N6     &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
-&kp TAB       &kp Q      &kp W   &kp E     &kp R      &kp T   &trans                                                   &trans     &mkp LCLK  &kp KP_N7   &kp KP_N8     &kp KP_N9      &kp KP_MINUS     &kp BSLH
-&kp CAPSLOCK  &kp A      &kp S   &kp D     &kp F      &kp G   &trans    &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &trans     &mkp RCLK  &kp KP_N4   &kp KP_N5     &kp KP_N6      &kp KP_PLUS      &kp SQT
-&kp LSHFT     &kp Z      &kp X   &m_copy   &m_paste   &kp B                        &kp HOME      &kp PG_UP                        &mkp MCLK  &kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_ENTER     &kp RSHFT
-&mo 2         &kp GRAVE  &none   &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp KP_N0             &kp UP      &kp DOWN      &kp KP_DOT     &kp RBKT         &mo 2
+&kp ESCAPE    &kp N1     &kp N2        &kp N3    &kp N4     &kp N5  &tog 2                                                                      &mo 3          &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+&kp TAB       &kp Q      &kp W         &kp E     &kp R      &kp T   &kp TAB                                                                     &kp BACKSPACE  &kp Y   &kp U   &kp I      &kp O     &kp SEMI  &kp BSLH
+&kp CAPSLOCK  &kp A      &kp S         &kp D     &kp F      &kp G   &kp LEFT_CONTROL  &kp LEFT_CONTROL  &kp LALT      &kp RIGHT_ALT  &kp RCTRL  &kp EQUAL      &kp H   &kp J   &kp K      &kp L     &kp P     &kp SQT
+&kp LSHFT     &kp Z      &kp X         &kp C     &kp V      &kp B                                       &kp HOME      &kp PG_UP                                &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&mo 2         &kp GRAVE  &kp LEFT_WIN  &kp LEFT  &kp RIGHT          &kp SPACE         &kp DEL           &kp END       &kp PG_DN      &kp ENTER  &kp SPACE              &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
         layer_fn {
             bindings = <
-&m_exit  &kp F1  &kp F2    &kp F3        &kp F4     &kp F5  &tog 1                                           &mo 3    &kp F6  &kp F7        &kp F8        &kp F9        &kp F10  &kp F12
-&trans   &trans  &trans    &kp UP_ARROW  &trans     &trans  &kp F11                                          &kp F12  &m_id   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans   &trans
-&trans   &trans  &kp LEFT  &kp DOWN      &kp RIGHT  &trans  &none    &m_clear  &trans      &trans  &m_clear  &none    &m_p    &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans   &trans
-&trans   &trans  &trans    &m_copy       &m_paste   &trans                     &trans      &trans                     &m_d    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans   &trans
-&trans   &trans  &trans    &trans        &trans             &trans   &trans    &trans      &trans  &trans    &trans           &kp NUMBER_0  &trans        &trans        &trans   &trans
+&m_exit  &kp F1      &kp F2    &kp F3        &kp F4     &kp F5             &kp F11                                      &kp F12   &kp F6  &kp F7        &kp F8        &kp F9        &kp F10  &kp F12
+&trans   &bl BL_TOG  &trans    &kp UP_ARROW  &trans     &kp C_VOLUME_UP    &trans                                       &m_clear  &m_id   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans   &trans
+&trans   &trans      &kp LEFT  &kp DOWN      &kp RIGHT  &kp C_VOLUME_DOWN  &none    &trans  &trans      &trans  &trans  &none     &m_p    &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans   &trans
+&trans   &trans      &m_undo   &m_copy       &m_paste   &kp K_MUTE                          &trans      &trans                    &m_d    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans   &trans
+&trans   &trans      &trans    &trans        &trans                        &trans   &trans  &trans      &trans  &trans  &trans            &kp NUMBER_0  &trans        &trans        &trans   &trans
+            >;
+        };
+
+        layer_keypad {
+            bindings = <
+&kp ESCAPE    &kp N1     &kp N2   &kp N3    &kp N4     &kp N5  &trans                                                   &mo 3      &kp N6     &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
+&kp TAB       &kp Q      &kp W    &kp E     &kp R      &kp T   &trans                                                   &trans     &mkp LCLK  &kp KP_N7   &kp KP_N8     &kp KP_N9      &kp KP_MINUS     &kp BSLH
+&kp CAPSLOCK  &kp A      &kp S    &kp D     &kp F      &kp G   &trans    &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &trans     &mkp RCLK  &kp KP_N4   &kp KP_N5     &kp KP_N6      &kp KP_PLUS      &kp SQT
+&kp LSHFT     &kp Z      &m_undo  &m_copy   &m_paste   &kp B                        &kp HOME      &kp PG_UP                        &mkp MCLK  &kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_ENTER     &kp RSHFT
+&mo 2         &kp GRAVE  &none    &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp KP_N0             &kp UP      &kp DOWN      &kp KP_DOT     &kp RBKT         &mo 2
             >;
         };
 
